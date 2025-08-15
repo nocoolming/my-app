@@ -7,6 +7,7 @@ import { config } from "../../puck.config";
 import { resolvePuckPath } from "~/lib/resolve-puck-path.server";
 import { getPage, savePage } from "~/lib/pages.server";
 import editorStyles from "@measured/puck/puck.css?url";
+import './app.css'
 
 export async function loader({ params }: Route.LoaderArgs) {
   const pathname = params["*"] ?? "/";
@@ -77,7 +78,24 @@ function Editor() {
             }
           );
         }}
-      />
+      >
+        <div className="flex flex-col h-screen">
+          <div className="flex-1">
+            <Puck.Preview />
+          </div>
+          <div className="flex flex-row gap-3">
+            <div className="flex-1">
+              <Puck.Components />
+            </div>
+            <div className="flex-1">
+              <Puck.Fields />
+            </div>
+          </div>
+        </div>
+
+
+
+      </Puck>
     </>
   );
 }
