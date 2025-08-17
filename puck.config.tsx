@@ -70,7 +70,7 @@ export const config: Config<Props> = {
       fields: {
         content: {
           type: 'slot',
-          allow: ['HeadingBlock', 'TextBlock', 'Card'],
+          // allow: ['HeadingBlock', 'TextBlock', 'Card'],
         },
       },
       resolveData: async ({ props }) => {
