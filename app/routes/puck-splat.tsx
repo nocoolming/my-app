@@ -68,16 +68,16 @@ function Editor() {
         data={loaderData.data}
         onPublish={async (data) => {
           console.log(data);
-          // await fetcher.submit(
-          //   {
-          //     data,
-          //   },
-          //   {
-          //     action: "",
-          //     method: "post",
-          //     encType: "application/json",
-          //   }
-          // );
+          await fetcher.submit(
+            {
+              data,
+            },
+            {
+              action: "",
+              method: "post",
+              encType: "application/json",
+            }
+          );
         }}
       >
         {/* <div className="flex flex-col h-screen">

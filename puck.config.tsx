@@ -1,4 +1,4 @@
-import type { Config } from "@measured/puck";
+import type { Config, Content, Slot } from "@measured/puck";
 
 type Props = {
   HeadingBlock: {
@@ -9,6 +9,12 @@ type Props = {
     text: string,
     resolvedText: string,
   };
+  Example: {
+    content: Slot,
+  },
+  Card: {
+
+  },
 };
 
 export const config: Config<Props> = {
@@ -43,7 +49,9 @@ export const config: Config<Props> = {
           props: {
             resolvedText: props.text
           },
-
+          readOnly: {
+            resolvedText: true,
+          }
         };
       },
       defaultProps: {
@@ -58,6 +66,29 @@ export const config: Config<Props> = {
         </div>
       ),
     },
+    Example: {
+      fields: {
+        content: {
+          type: 'slot',
+          allow: ['HeadingBlock', 'TextBlock', 'Card'],
+        },
+      },
+      resolveData: async ({ props }) => {
+        console.log(JSON.stringify(props));
+
+        return { props }
+      },
+      render: ({ content: Content }) => {
+        return(
+           <Content className="min-w-full min-h-64"/>
+
+          );
+      },
+
+    },
+    Card: {
+      render: () => <div>Hello, world</div>
+    }
   },
 }
 
