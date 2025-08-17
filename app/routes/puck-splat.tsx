@@ -67,19 +67,20 @@ function Editor() {
         config={config}
         data={loaderData.data}
         onPublish={async (data) => {
-          await fetcher.submit(
-            {
-              data,
-            },
-            {
-              action: "",
-              method: "post",
-              encType: "application/json",
-            }
-          );
+          console.log(data);
+          // await fetcher.submit(
+          //   {
+          //     data,
+          //   },
+          //   {
+          //     action: "",
+          //     method: "post",
+          //     encType: "application/json",
+          //   }
+          // );
         }}
       >
-        <div className="flex flex-col h-screen">
+        {/* <div className="flex flex-col h-screen">
           <div className="flex-1">
             <Puck.Preview />
           </div>
@@ -91,10 +92,7 @@ function Editor() {
               <Puck.Fields />
             </div>
           </div>
-        </div>
-
-
-
+        </div> */}
       </Puck>
     </>
   );

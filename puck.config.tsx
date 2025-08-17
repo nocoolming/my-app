@@ -1,23 +1,63 @@
 import type { Config } from "@measured/puck";
 
 type Props = {
-  HeadingBlock: { title: string };
+  HeadingBlock: {
+    title: string,
+    resolvedTitle: string,
+  };
+  TextBlock: {
+    text: string,
+    resolvedText: string,
+  };
 };
 
 export const config: Config<Props> = {
   components: {
     HeadingBlock: {
       fields: {
-        title: { type: "text" },
+        title: {
+          type: "text",
+        },
+        resolvedTitle: {
+          type: "text",
+        },
+      },
+      resolveData: async ({ props }) => {
+        return {
+          props: {
+            resolvedTitle: props.title,
+          },
+        };
+      },
+      render: ({ resolvedTitle }) => {
+        return <h1>{resolvedTitle}</h1>;
+      },
+    },
+    TextBlock: {
+      fields: {
+        text: { type: "text" },
+        resolvedText: { type: "text" },
+      },
+      resolveData: async ({ props }) => {
+        return {
+          props: {
+            resolvedText: props.text
+          },
+
+        };
       },
       defaultProps: {
-        title: "Heading",
+        text: 'test',
+        resolvedText: 'test',
       },
-      render: ({ title }) => (
+      render: ({ resolvedText }) => (
         <div style={{ padding: 64 }}>
-          <h1>{title}</h1>
+          <input type="text" defaultValue={resolvedText}
+            className="w-full" />
+          <h2>{resolvedText}</h2>
         </div>
       ),
     },
   },
-};
+}
+
